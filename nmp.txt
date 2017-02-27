@@ -1,0 +1,6 @@
+/lnmp/php/sbin/php-fpm
+
+cp -p /usr/lib64/php/modules/pdo_mysql.so /lnmp/php/lib/php/extensions/no-debug-non-zts-20131226/
+
+
+mysql -h localhost -u root -p blog < e:\mysql\blog.sql

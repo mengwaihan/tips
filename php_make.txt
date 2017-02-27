@@ -1,0 +1,72 @@
+./configure --prefix=/lnmp/php --with-mysql=/lnmp/mysql/mysql-5.6.23 --enable-fpm
+./configure --with-php-config=/lnmp/php/bin/php-config --with-mysql=/usr
+./configure --with-php-config=/lnmp/php/bin/php-config --with-pdo-mysql=/usr
+./configure --with-php-config=/lnmp/php/bin/php-config
+
+./configure --with-openssl --with-php-config=/lnmp/php/bin/php-config
+
+make && make install
+
+linux（centos）系统下nginx 服务器重启，关闭的命令。
+
+nginx -s reload  ：修改配置后重新加载生效
+
+nginx -s reopen  ：重新打开日志文件
+
+nginx -t 测试nginx配置文件是否正确
+
+nginx -t -c /path/to/nginx.conf 测试nginx配置文件是否正确
+
+关闭nginx：
+
+nginx -s stop  : 快速停止nginx
+         quit  : 完整有序的停止nginx
+
+其他的停止 nginx 方式：
+
+ps -ef | grep nginx
+
+kill -QUIT 主进程号     ：从容停止Nginx
+
+kill -TERM 主进程号     ：快速停止Nginx
+
+pkill -9 nginx         :强制停止Nginx
+
+启动nginx:
+
+nginx -c /path/to/nginx.conf
+
+平滑重启nginx：
+
+kill -HUP 主进程号
+
+linux下导入、导出mysql数据库命令
+
+一、导出数据库用mysqldump命令（注意mysql的安装路径，即此命令的路径）：
+1、导出数据和表结构：
+mysqldump -u用户名 -p密码 数据库名 > 数据库名.sql
+#/usr/local/mysql/bin/   mysqldump -uroot -p abc > abc.sql
+敲回车后会提示输入密码
+
+2、只导出表结构
+mysqldump -u用户名 -p密码 -d 数据库名 > 数据库名.sql
+#/usr/local/mysql/bin/   mysqldump -uroot -p -d abc > abc.sql
+
+注：/usr/local/mysql/bin/  --->  mysql的data目录
+
+
+二、导入数据库
+1、首先建空数据库
+mysql>create database abc;
+
+2、导入数据库
+方法一：
+（1）选择数据库
+mysql>use abc;
+（2）设置数据库编码
+mysql>set names utf8;
+（3）导入数据（注意sql文件的路径）
+mysql>source /work/blog/blog.sql;
+方法二：
+mysql -u用户名 -p密码 数据库名 < 数据库名.sql
+#mysql -uabc_f -p abc < abc.sql
